@@ -1,4 +1,7 @@
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <string>
 using namespace std;
 
 char** CrearMatriz1_j1();
@@ -6,15 +9,79 @@ char** CrearMatriz2_j1();
 char** CrearMatriz1_j2();
 char** CrearMatriz2_j2();
 void imprimirMatriz(char**, int, int);
+void liberarMatriz(char**);
+//String shot();
 
 int main() {
 	cout << "-> BATTLESHOTS" << endl;
+	//cout << shot() << endl;
 	char** matriz1_j1 = CrearMatriz1_j1();
 	char** matriz2_j1 = CrearMatriz2_j1();
 	char** matriz1_j2 = CrearMatriz1_j2();
 	char** matriz2_j2 = CrearMatriz2_j2();
-	imprimirMatriz(matriz1_j1, 0, 0);
+	int ganador = 0, turno = 1;	
+	/*do {
+		if (turno == 1) {
+			cout << "- Turno Jugador 1" << endl;
+			int coord_x, coord_y;
+			cout << "Ingrese la coordenada en x: ";
+			cin >> coord_x;
+			cout << "Ingrese la coordenada en y: ";
+			cin >> coord_y;
+			if (matriz2_j2[coord_x][coord_y] == '*') {
+				matriz2_j1[coord_x][coord_y] == 'X';
+				
+			} else {
+				matriz2_j1[coord_x][coord_y] == '-';
+			}
+			turno = 2;
+		} else {
+			turno = 1;
+		}
+	} while (ganador == 0);*/
+	liberarMatriz(matriz1_j1);
+	liberarMatriz(matriz2_j1);
+	liberarMatriz(matriz1_j2);
+	liberarMatriz(matriz2_j2);
 	return 0;
+}
+
+/*string shot() {
+	string shot;	
+	srand (time(NULL));
+	int ran = rand() % 7 + 1;
+	switch (ran) {
+		case 1:
+			shot = "Cheap_Tequila"
+			break;
+		case 2:
+			shot = "Jell-O"
+			break;
+		case 3:
+			shot = "Kamikaze"
+			break;
+		case 4:
+			shot = "MindEraser"
+			break;
+		case 5:
+			shot = "Bombs"
+			break;
+		case 6:
+			shot = "FireBalls"
+			break;
+		case 7:
+			shot = "Whiskey"
+			break;
+	}
+	return shot;
+}*/
+
+void liberarMatriz(char** matriz) {
+	for (int i = 0; i < 8; i++) {
+		delete[] matriz[i];
+		matriz[i] = NULL;
+	}
+	delete[] matriz;
 }
 
 void imprimirMatriz(char** matriz, int fila, int columna) {
