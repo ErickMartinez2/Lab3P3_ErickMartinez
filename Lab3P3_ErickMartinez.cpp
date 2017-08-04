@@ -34,6 +34,11 @@ int main() {
 				cin >> coord_y;
 				if ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7)) {
 					cout << "Coordenadas Incorrectas!!" << endl;
+				} else {
+					if ((matriz2_j1[coord_x][coord_y] == 'X') || (matriz2_j1[coord_x][coord_y] == '-')) {
+						cout << "Disparo Repetido!!" << endl;
+						coord_x = 8;
+					}
 				}
 			} while ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7));
 			cout << endl;
@@ -50,7 +55,7 @@ int main() {
 			}
 			if (num_shots1 == 5) {
 				cout << endl;
-				cout << "Jugador 1 ha Ganado!!" << endl;
+				cout << "*** Jugador 1 ha Ganado!! ***" << endl;
 				ganador++;
 			}
 			turno = 2;
@@ -65,6 +70,11 @@ int main() {
 				cin >> coord_y;
 				if ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7)) {
 					cout << "Coordenadas Incorrectas!!" << endl;
+				} else {
+					if ((matriz2_j2[coord_x][coord_y] == 'X') || (matriz2_j2[coord_x][coord_y] == '-')) {
+						cout << "Disparo Repetido!!" << endl;
+						coord_x = 8;
+					}
 				}
 			} while ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7));
 			cout << endl;
@@ -81,7 +91,7 @@ int main() {
 			}
 			if (num_shots2 == 5) {
 				cout << endl;
-				cout << "Jugador 2 ha Ganado!!" << endl;
+				cout << "*** Jugador 2 ha Ganado!! ***" << endl;
 				ganador++;
 			}
 			turno = 1;
