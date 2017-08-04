@@ -18,7 +18,7 @@ int main() {
 	char** matriz2_j1 = CrearMatriz2_j1();
 	char** matriz1_j2 = CrearMatriz1_j2();
 	char** matriz2_j2 = CrearMatriz2_j2();
-	int ganador = 0, turno = 1;	
+	int ganador = 0, turno = 1, num_shots1 = 0, num_shots2 = 0;	
 	do {
 		cout << endl;
 		if (turno == 1) {
@@ -35,10 +35,16 @@ int main() {
 				imprimirMatriz(matriz2_j1, 0, 0);
 				cout << "Disparo Acertado!!" << endl;
 				cout << "Castigo Jugador 2: " << shot() << endl;
+				num_shots1++;
 			} else {
 				matriz2_j1[coord_x][coord_y] = '-';
 				imprimirMatriz(matriz2_j1, 0, 0);
 				cout << "Disparo Fallido!!" << endl;
+			}
+			if (num_shots1 == 5) {
+				cout << endl;
+				cout << "Jugador 1 ha Ganado!!" << endl;
+				ganador++;
 			}
 			turno = 2;
 		} else {
@@ -55,12 +61,17 @@ int main() {
 				imprimirMatriz(matriz2_j2, 0, 0);
 				cout << "Disparo Acertado!!" << endl;
 				cout << "Castigo Jugador 1: " << shot() << endl;
+				num_shots2++;
 			} else {
 				matriz2_j2[coord_x][coord_y] = '-';
 				imprimirMatriz(matriz2_j2, 0, 0);
 				cout << "Disparo Fallido!!" << endl;
 			}
-			ganador++;
+			if (num_shots2 == 5) {
+				cout << endl;
+				cout << "Jugador 2 ha Ganado!!" << endl;
+				ganador++;
+			}
 			turno = 1;
 		}
 	} while (ganador == 0);
@@ -75,28 +86,32 @@ string shot() {
 	string shot = "";	
 	srand (time(NULL));
 	int num = rand() % 7 + 1;
-	switch (num) {
-		case 1:
-			shot = "Cheap_Tequila";
-			break;
-		case 2:
+	if (num == 1) {
+		shot = "Cheap_Tequila";
+	}else{
+		if (num == 2) {
 			shot = "Jell-O";
-			break;
-		case 3:
-			shot = "Kamikaze";
-			break;
-		case 4:
-			shot = "MindEraser";
-			break;
-		case 5:
-			shot = "Bombs";
-			break;
-		case 6:
-			shot = "FireBalls";
-			break;
-		case 7:
-			shot = "Whiskey";
-			break;
+		}else{
+			if (num == 3) {
+				shot = "Kamikaze";
+			}else{
+				if (num == 4) {
+					shot = "MindEraser";
+				}else{
+					if (num == 5) {
+						shot = "Bombs";
+					}else{
+						if (num == 6) {
+							shot = "FireBalls";
+						}else{
+							if (num == 7) {
+								shot = "Whiskey";
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	return shot;
 }
