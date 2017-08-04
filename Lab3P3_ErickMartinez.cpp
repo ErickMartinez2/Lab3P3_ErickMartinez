@@ -20,24 +20,47 @@ int main() {
 	char** matriz2_j2 = CrearMatriz2_j2();
 	int ganador = 0, turno = 1;	
 	do {
+		cout << endl;
 		if (turno == 1) {
 			cout << "- Turno Jugador 1" << endl;
+			imprimirMatriz(matriz2_j1, 0, 0);
 			int coord_x, coord_y;
 			cout << "Ingrese la coordenada en x: ";
 			cin >> coord_x;
 			cout << "Ingrese la coordenada en y: ";
 			cin >> coord_y;
 			cout << endl;
-			if (matriz2_j2[coord_x][coord_y] == '*') {
-				matriz2_j1[coord_x][coord_y] == 'X';
+			if (matriz1_j2[coord_x][coord_y] == '*') {
+				matriz2_j1[coord_x][coord_y] = 'X';
+				imprimirMatriz(matriz2_j1, 0, 0);
 				cout << "Disparo Acertado!!" << endl;
 				cout << "Castigo Jugador 2: " << shot() << endl;
 			} else {
-				matriz2_j1[coord_x][coord_y] == '-';
+				matriz2_j1[coord_x][coord_y] = '-';
+				imprimirMatriz(matriz2_j1, 0, 0);
 				cout << "Disparo Fallido!!" << endl;
 			}
 			turno = 2;
 		} else {
+			cout << "- Turno Jugador 2" << endl;
+			imprimirMatriz(matriz2_j2, 0, 0);
+			int coord_x, coord_y;
+			cout << "Ingrese la coordenada en x: ";
+			cin >> coord_x;
+			cout << "Ingrese la coordenada en y: ";
+			cin >> coord_y;
+			cout << endl;
+			if (matriz1_j1[coord_x][coord_y] == '*') {
+				matriz2_j2[coord_x][coord_y] = 'X';
+				imprimirMatriz(matriz2_j2, 0, 0);
+				cout << "Disparo Acertado!!" << endl;
+				cout << "Castigo Jugador 1: " << shot() << endl;
+			} else {
+				matriz2_j2[coord_x][coord_y] = '-';
+				imprimirMatriz(matriz2_j2, 0, 0);
+				cout << "Disparo Fallido!!" << endl;
+			}
+			ganador++;
 			turno = 1;
 		}
 	} while (ganador == 0);
