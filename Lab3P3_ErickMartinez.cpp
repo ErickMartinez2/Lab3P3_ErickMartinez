@@ -11,6 +11,8 @@ char** CrearMatriz2_j2();
 void imprimirMatriz(char**, int, int);
 void liberarMatriz(char**);
 string shot();
+void verificarNaves(char**);
+void verificarNaves2(char**);
 
 int main() {
 	cout << "-> BATTLESHOTS" << endl;
@@ -25,10 +27,15 @@ int main() {
 			cout << "- Turno Jugador 1" << endl;
 			imprimirMatriz(matriz2_j1, 0, 0);
 			int coord_x, coord_y;
-			cout << "Ingrese la coordenada en x: ";
-			cin >> coord_x;
-			cout << "Ingrese la coordenada en y: ";
-			cin >> coord_y;
+			do {
+				cout << "Ingrese la coordenada en x: ";
+				cin >> coord_x;
+				cout << "Ingrese la coordenada en y: ";
+				cin >> coord_y;
+				if ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7)) {
+					cout << "Coordenadas Incorrectas!!" << endl;
+				}
+			} while ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7));
 			cout << endl;
 			if (matriz1_j2[coord_x][coord_y] == '*') {
 				matriz2_j1[coord_x][coord_y] = 'X';
@@ -51,10 +58,15 @@ int main() {
 			cout << "- Turno Jugador 2" << endl;
 			imprimirMatriz(matriz2_j2, 0, 0);
 			int coord_x, coord_y;
-			cout << "Ingrese la coordenada en x: ";
-			cin >> coord_x;
-			cout << "Ingrese la coordenada en y: ";
-			cin >> coord_y;
+			do {
+				cout << "Ingrese la coordenada en x: ";
+				cin >> coord_x;
+				cout << "Ingrese la coordenada en y: ";
+				cin >> coord_y;
+				if ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7)) {
+					cout << "Coordenadas Incorrectas!!" << endl;
+				}
+			} while ((coord_x < 0 || coord_x > 7) || (coord_y < 0 || coord_y > 7));
 			cout << endl;
 			if (matriz1_j1[coord_x][coord_y] == '*') {
 				matriz2_j2[coord_x][coord_y] = 'X';
@@ -75,11 +87,138 @@ int main() {
 			turno = 1;
 		}
 	} while (ganador == 0);
+	cout << endl;
+	verificarNaves(matriz2_j2);
+	cout << endl;
+	verificarNaves2(matriz2_j1);
 	liberarMatriz(matriz1_j1);
 	liberarMatriz(matriz2_j1);
 	liberarMatriz(matriz1_j2);
 	liberarMatriz(matriz2_j2);
 	return 0;
+}
+
+void verificarNaves(char** matriz) {
+	int cont_nave1 = 0, cont_nave2 = 0, cont_nave3 = 0, cont_nave4 = 0;
+	if (matriz[1][1] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[1][2] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[1][3] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[2][7] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[3][7] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[4][7] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[3][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[4][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[5][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[7][1] == 'X') {
+		cont_nave4++;
+	}
+	if (matriz[7][2] == 'X') {
+		cont_nave4++;
+	}
+	if (matriz[7][3] == 'X') {
+		cont_nave4++;
+	}
+	cout << "-> Estadisticas Jugador 1:" << endl;
+	if (cont_nave1 != 3) {
+		cout << "- Nave 1: " << cont_nave1 << " ataques" << endl;
+	} else {
+		cout << "- Nave 1: Derribado" << endl;
+	}
+	if (cont_nave2 != 3) {
+		cout << "- Nave 2: " << cont_nave2 << " ataques" << endl;
+	} else {
+		cout << "- Nave 2: Derribado" << endl;
+	}
+	if (cont_nave3 != 3) {
+		cout << "- Nave 3: " << cont_nave3 << " ataques" << endl;
+	} else {
+		cout << "- Nave 3: Derribado" << endl;
+	}
+	if (cont_nave4 != 3) {
+		cout << "- Nave 4: " << cont_nave4 << " ataques" << endl;
+	} else {
+		cout << "- Nave 4: Derribado" << endl;
+	}
+}
+
+
+void verificarNaves2(char** matriz) {
+	int cont_nave1 = 0, cont_nave2 = 0, cont_nave3 = 0, cont_nave4 = 0;
+	if (matriz[0][1] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[0][2] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[0][3] == 'X') {
+		cont_nave1++;
+	}
+	if (matriz[3][5] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[3][6] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[3][7] == 'X') {
+		cont_nave2++;
+	}
+	if (matriz[4][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[5][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[6][4] == 'X') {
+		cont_nave3++;
+	}
+	if (matriz[5][1] == 'X') {
+		cont_nave4++;
+	}
+	if (matriz[6][1] == 'X') {
+		cont_nave4++;
+	}
+	if (matriz[7][1] == 'X') {
+		cont_nave4++;
+	}
+	cout << "-> Estadisticas Jugador 2:" << endl;
+	if (cont_nave1 != 3) {
+		cout << "- Nave 1: " << cont_nave1 << " ataques" << endl;
+	} else {
+		cout << "- Nave 1: Derribado" << endl;
+	}
+	if (cont_nave2 != 3) {
+		cout << "- Nave 2: " << cont_nave2 << " ataques" << endl;
+	} else {
+		cout << "- Nave 2: Derribado" << endl;
+	}
+	if (cont_nave3 != 3) {
+		cout << "- Nave 3: " << cont_nave3 << " ataques" << endl;
+	} else {
+		cout << "- Nave 3: Derribado" << endl;
+	}
+	if (cont_nave4 != 3) {
+		cout << "- Nave 4: " << cont_nave4 << " ataques" << endl;
+	} else {
+		cout << "- Nave 4: Derribado" << endl;
+	}
 }
 
 string shot() {
